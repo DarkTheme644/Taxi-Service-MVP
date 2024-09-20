@@ -4,84 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <style>
-        body {
-            background-color: white;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            width: 300px;
-            margin: 100px auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-        .btn {
-            width: 100%;
-            padding: 10px;
-            background-color: #ffcc00;
-            color: black;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 10px;
-        }
-        .btn:hover {
-            background-color: #f2b600;
-        }
-        .show-password {
-            cursor: pointer;
-            color: #007BFF;
-            margin-left: 5px;
-            font-size: 12px;
-        }
-    </style>
 </head>
 <body>
-
-<div class="container">
     <h2>Login</h2>
-    <form action="/login" method="POST" onsubmit="return loginUser(event)">
+    <form action="{{ url_for('main.login') }}" method="POST">
         <label for="username">Username or Email:</label>
         <input type="text" id="username" name="username" required>
 
         <label for="password">Password:</label>
         <input type="password" id="password" name="password" required>
-        <span class="show-password" onclick="togglePassword()">Show</span>
 
-        <button type="submit" class="btn">Login</button>
-        <button type="button" class="btn" onclick="window.location.href='/register'">Register</button>
+        <button type="submit">Login</button>
+        <button type="button" onclick="window.location.href='{{ url_for('main.register') }}'">Register</button>
     </form>
-</div>
-
-<script>
-    function togglePassword() {
-        var passwordField = document.getElementById("password");
-        if (passwordField.type === "password") {
-            passwordField.type = "text";
-        } else {
-            passwordField.type = "password";
-        }
-    }
-
-    // Имитация входа пользователя и перехода на домашнюю страницу
-    function loginUser(event) {
-        event.preventDefault();
-
-        // Логика проверки логина и пароля может быть добавлена здесь
-        // После успешного входа перенаправляем пользователя на домашнюю страницу
-        window.location.href = '/home';
-    }
-</script>
-
 </body>
 </html>
